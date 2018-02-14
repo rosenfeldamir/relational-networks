@@ -28,6 +28,9 @@ parser.add_argument('--lr', type=float, default=0.0001, metavar='LR',
                     help='learning rate (default: 0.0001)')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='disables CUDA training')
+parser.add_argument('--test', action='store_true', default=False,
+                    help='just test the network')
+
 parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
 parser.add_argument('--log-interval', type=int, default=10, metavar='N',
@@ -172,8 +175,10 @@ if args.resume:
         checkpoint = torch.load(filename)
         model.load_state_dict(checkpoint)
         print('==> loaded checkpoint {}'.format(filename))
-
-for epoch in range(1, args.epochs + 1):
-    train(epoch, rel_train, norel_train)
-    test(epoch, rel_test, norel_test)
-    model.save_model(epoch)
+if args.test:
+    test(0, rel_test, norel_test)
+else:
+    for epoch in range(1, args.epochs + 1):
+        train(epoch, rel_train, norel_train)
+        test(epoch, rel_test, norel_test)
+        model.save_model(epoch)

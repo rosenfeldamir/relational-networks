@@ -158,5 +158,5 @@ train_datasets = [build_dataset() for _ in range(train_size)]
 print('saving datasets...')
 filename = os.path.join(dirs,'sort-of-clevr.pickle')
 with  open(filename, 'wb') as f:
-    pickle.dump((train_datasets, test_datasets), f)
+    pickle.dump((train_datasets, test_datasets), f,protocol=2)
 print('datasets saved at {}'.format(filename))
