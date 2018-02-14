@@ -69,7 +69,7 @@ def build_dataset():
         color = random.randint(0,5)
         question[color] = 1
         question[6] = 1
-        subtype = random.randint(0,2)
+        subtype = random.randint(0,3)
         question[subtype+8] = 1
         norel_questions.append(question)
         """Answer : [yes, no, rectangle, circle, r, g, b, o, k, y]"""
@@ -101,7 +101,7 @@ def build_dataset():
         color = random.randint(0,5)
         question[color] = 1
         question[7] = 1
-        subtype = random.randint(0,2)
+        subtype = random.randint(0,3)
         question[subtype+8] = 1
         rel_questions.append(question)
 
